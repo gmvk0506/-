@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>小黃的詳細資料 | 毛孩找家平台</title>
+    <title>小狐的詳細資料 | 毛孩找家平台</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* 核心設計與全局設定 */
         :root {
             --primary-orange: #ff9f43;
             --soft-brown: #5d4037;
@@ -16,9 +15,7 @@
             --text-gray: #636e72;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Noto Sans TC', sans-serif;
@@ -29,7 +26,6 @@
             padding: 40px 5%;
         }
 
-        /* 返回按鈕 */
         .back-home {
             text-decoration: none;
             color: var(--primary-orange);
@@ -38,65 +34,20 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: 0.3s;
         }
 
-        .back-home:hover {
-            color: #e67e22;
-        }
-
-        /* 內容容器 */
         .container {
-            align-items: center;
-            background-color: white; /* 純白內容背景 */
+            background-color: white;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 40px;
             position: relative;
             overflow: hidden;
         }
 
-        /* 裝飾背景：手繪感小狗腳印 (偽元素) */
-        .container::after {
-            content: '\f1b0'; /* FontAwesome Paw Icon */
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            position: absolute;
-            bottom: -50px;
-            right: -30px;
-            font-size: 200px;
-            color: rgba(255, 159, 67, 0.03); /* 極淡的橘色腳印 */
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .container > * {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-        }
-
-        /* 標題與標籤 */
-        h1, h3 {
-            color: var(--soft-brown);
-            margin: 0 0 10px;
-        }
-
-        h1 {
-            font-size: 32px;
-        }
-
-        h3 {
-            font-size: 22px;
-            margin-top: 30px;
-            border-bottom: 2px solid #ffefe0;
-            padding-bottom: 8px;
-        }
+        h1, h2, h3 { color: var(--soft-brown); margin: 0 0 15px; }
 
         .tag {
             display: inline-block;
@@ -109,131 +60,188 @@
             margin-right: 8px;
         }
 
-        /* 排版組件 */
         .dog-header {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .main-img {
             width: 100%;
-            height: 300px;
+            height: 350px;
             border-radius: 20px;
             object-fit: cover;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* 基本資料表格 */
-        .info-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
+        .info-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .info-table td { padding: 12px; border-bottom: 1px solid #eee; }
+        .info-label { font-weight: bold; width: 120px; color: var(--primary-orange); }
 
-        .info-table td {
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .info-label {
-            font-weight: bold;
-            width: 120px;
-            color: var(--primary-orange);
-            font-size: 1.1rem;
-        }
-
-        /* 生活照相簿 */
         .photo-gallery {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 15px;
-            margin-top: 15px;
+            margin: 20px 0 40px;
         }
 
         .photo-gallery img {
             width: 100%;
-            height: 180px;
+            height: 200px;
             border-radius: 10px;
             object-fit: cover;
-            transition: transform 0.3s;
         }
 
-        .photo-gallery img:hover {
-            transform: scale(1.05);
-        }
-
-        /* 捐款按鈕連回主頁 */
-        .btn-donate {
-            background: var(--primary-orange);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            display: block;
-            text-align: center;
-            margin-top: 40px;
-            font-weight: bold;
-            font-size: 1.2rem;
+        /* 捐款區塊樣式 */
+        .opt-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 20px; 
+            border-bottom: 1px solid #eee; 
+            cursor: pointer;
             transition: 0.3s;
         }
+        .opt-item:hover { background: #fffaf0; }
+        .opt-item .amt { font-size: 1.5rem; font-weight: bold; color: var(--soft-brown); }
+        .opt-item .note { font-size: 0.85rem; color: #888; text-align: right; max-width: 250px; }
 
-        .btn-donate:hover {
-            background: #e67e22;
+        /* 捐款方式按鈕 */
+        .btn-pay-method {
+            flex: 1;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
+        .btn-single { background-color: var(--primary-orange); }
+        .btn-single:hover { background-color: #e67e22; }
+        
+        .btn-periodic { background-color: #e67e22; }
+        .btn-periodic:hover { background-color: #d35400; }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="back-home"><i class="fa-solid fa-chevron-left"></i> 返回主頁</a>
+    <a href="index1.html" class="back-home"><i class="fa-solid fa-chevron-left"></i> 返回首頁</a>
 
     <div class="container">
         <div class="dog-header">
             <img src="https://placedog.net/600/400?id=1" class="main-img" alt="小黃">
             <div>
-                <h1>我是小黃</h1>
-                <p style="margin-bottom: 15px;">「嗨！我正在找一個能陪我玩球的家。」</p>
+                <h1>小狐</h1>
+                <p style="margin-bottom: 20px;">「雖然曾經流浪，但我依然相信愛。我在等一個家，是你嗎？」</p>
                 <div>
-                    <span class="tag">#2歲</span> 
-                    <span class="tag">#活潑好動</span> 
-                    <span class="tag">#愛撒嬌</span>
+                    <span class="tag">#小女孩</span> 
+                    <span class="tag">#已完成結紮</span> 
+                    <span class="tag">#親人滿分</span>
                 </div>
             </div>
         </div>
 
-        <h3>🐾 基本資料</h3>
+        <h3>🐾 關於我的資料</h3>
         <table class="info-table">
-            <tr>
-                <td class="info-label">年齡</td>
-                <td>約 2 歲</td>
-            }
-            <tr>
-                <td class="info-label">個性</td>
-                <td>非常聰明，學指令很快。喜歡和人互動，是個開朗的大男孩。</td>
-            }
-            <tr>
-                <td class="info-label">健康狀況</td>
-                <td>已完成晶片登記、完整疫苗、已絕育。目前健康狀況良好。</td>
-            }
-            <tr>
-                <td class="info-label">我的故事</td>
-                <td>小黃是在大雨中的校園角落被救援的，雖然經歷過辛苦的浪浪生活，但牠依然對人充滿信任...</td>
-            }
+            <tr><td class="info-label">年齡</td><td>約 3 歲</td></tr>
+            <tr><td class="info-label">個性</td><td>非常愛玩球，看到網球會興奮地搖尾巴。對人完全沒有戒心。</td></tr>
+            <tr><td class="info-label">健康狀況</td><td>已施打年度疫苗、晶片植入、固定服用心絲蟲預防藥。</td></tr>
+            <tr><td class="info-label">發現故事</td><td>在一場午後雷陣雨中，小黃躲在校園行政大樓下發抖，被熱心的學生發現後送來我們這裡...</td></tr>
         </table>
 
-        <h3>📷 更多小黃的生活點滴</h3>
-        <p style="margin-bottom: 15px;">讓我們看看不同角度、不同生活場景的小黃！</p>
+        <h3>📷 我的精彩生活照</h3>
         <div class="photo-gallery">
-            <img src="https://placedog.net/600/400?id=101" alt="小黃在草地奔跑">
-            <img src="https://placedog.net/600/400?id=102" alt="小黃慵懶睡午覺">
-            <img src="https://placedog.net/600/400?id=103" alt="小黃戴聖誕帽">
+            <img src="https://placedog.net/600/400?id=101" alt="草地奔跑">
+            <img src="https://placedog.net/600/400?id=102" alt="睡午覺">
+            <img src="https://placedog.net/600/400?id=103" alt="跟朋友玩">
         </div>
 
-        <a href="index.html#donate" class="btn-donate">贊助小黃一罐肉罐頭</a>
+        <section id="dog-donate" style="margin-top: 60px; border-top: 4px solid #eee; padding-top: 50px;">
+            <h2 style="text-align: center; margin-bottom: 40px;">線上認養 - 雲端寶貝：小狐</h2>
+            
+            <div style="display: flex; gap: 30px; align-items: flex-start; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 300px; background: #8d8d8d; padding: 50px 30px; border-radius: 20px; text-align: center; color: white;">
+                    <div style="width: 220px; height: 220px; border-radius: 50%; overflow: hidden; margin: 0 auto 25px; border: 6px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                        <img src="https://placedog.net/600/400?id=1" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <h2 style="font-size: 2.2rem; margin-bottom: 10px;">小狐</h2>
+                    <p style="background: white; color: #555; display: inline-block; padding: 6px 25px; border-radius: 25px; font-weight: bold; letter-spacing: 2px;">贊助我罐罐</p>
+                </div>
+
+                <div style="flex: 1.5; min-width: 320px; background: white; padding: 10px;">
+                    <p style="color: var(--primary-orange); font-weight: bold; margin-bottom: 15px; font-size: 1.1rem;">1. 點選金額或自訂金額</p>
+                    
+                    <div class="donate-options">
+                        <div class="opt-item" onclick="selectAmount(300)">
+                            <span class="amt">NTD 30</span>
+                            <span class="note">每天只要 10 元，照顧小狐與他的好朋友們</span>
+                        </div>
+                        <div class="opt-item" onclick="selectAmount(600)">
+                            <span class="amt">NTD 60</span>
+                            <span class="note">每天只要 20 元，照顧小狐與他的好朋友們</span>
+                        </div>
+                        <div class="opt-item" onclick="selectAmount(1500)">
+                            <span class="amt">NTD 100</span>
+                            <span class="note">每天捐出一杯咖啡，照顧小狐與他的好朋友們</span>
+                        </div>
+                        <div class="opt-item" onclick="selectAmount(3000)">
+                            <span class="amt" style="color: #e67e22;">NTD 200</span>
+                            <span class="note" style="color: #e67e22;">每天 100 元，累積小愛成大愛</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 20px; display: flex; align-items: center; gap: 15px; background: #f9f9f9; padding: 15px; border-radius: 10px;">
+                        <span style="font-weight: bold; white-space: nowrap;">自訂金額</span>
+                        <input type="number" id="customDogAmount" placeholder="請輸入金額" style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;">
+                    </div>
+
+                    <p style="color: var(--primary-orange); font-weight: bold; margin: 30px 0 15px; font-size: 1.1rem;">2. 選擇捐款方式（前往綠界）</p>
+                    
+                    <div style="display: flex; gap: 15px;">
+                        <button onclick="goToPay('single')" class="btn-pay-method btn-single">單次捐款</button>
+                        <button onclick="goToPay('periodic')" class="btn-pay-method btn-periodic">定期定額</button>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
+    <footer style="text-align: center; margin-top: 60px; color: #999; font-size: 0.9rem;">
+        © 2026 毛孩找家平台 | 讓愛永不止息
+    </footer>
+
+    <script>
+        function selectAmount(val) {
+            document.getElementById('customDogAmount').value = val;
+        }
+
+        function goToPay(type) {
+            const amount = document.getElementById('customDogAmount').value;
+            if(!amount || amount < 10) {
+                alert('請先選擇或輸入捐款金額 (至少 10 元) 喔！');
+                return;
+            }
+            
+            let ecpayURL = "";
+
+            if(type === 'single') {
+                // 正式單次捐款連結
+                ecpayURL = "https://p.ecpay.com.tw/848824B";
+                alert('感謝您的單次支持！即將前往綠界支付 NTD ' + amount);
+            } else {
+                // 正式定期定額連結
+                ecpayURL = "https://p.ecpay.com.tw/B7C6050"; 
+                alert('感謝您選擇定期定額！讓愛能持續守護小狐，金額：NTD ' + amount);
+            }
+
+            window.location.href = ecpayURL;
+        }
+    </script>
 </body>
 </html>
